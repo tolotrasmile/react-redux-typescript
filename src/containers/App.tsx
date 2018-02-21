@@ -1,8 +1,10 @@
 import * as React from 'react'
-import UserList from '../components/User'
-import Main from '../components/Main'
 import { connect } from 'react-redux'
 import { actions } from '../actions'
+import UserList from '../components/User'
+import Name from '../components/Name'
+import NameThunk from '../components/NameThunk'
+import NamePromise from '../components/NamePromise'
 
 interface IState {
   userName: string
@@ -19,12 +21,10 @@ class App extends React.Component<any, IState> {
 
   render () {
     return <div>
-      <Main
-        changeName={() => this.props.setName(JSON.stringify(Date.now()))}
-        changeNameThunk={() => this.props.setNameThunk(JSON.stringify(Date.now()))}
-        changeNamePromise={() => this.props.setNamePromise(JSON.stringify(Date.now()))}
-      />
       <UserList name={this.props.user.name}/>
+      <Name changeName={() => this.props.setName('Name : ' + JSON.stringify(Date.now()))}/>
+      <NameThunk changeNameThunk={() => this.props.setNameThunk('Name Thunk: ' + JSON.stringify(Date.now()))}/>
+      <NamePromise changeNamePromise={() => this.props.setNamePromise('Name Promise : ' + JSON.stringify(Date.now()))}/>
     </div>
   }
 
